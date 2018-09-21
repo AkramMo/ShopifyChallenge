@@ -3,6 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use App\Order;
+use App\Product;
 
 class LineItem extends Model
 {
@@ -13,17 +17,38 @@ class LineItem extends Model
      */
     protected $table = 'line_item';
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+
+    protected $fillable = [
+        'total',
+        'shop_id',
+        'orders_id',
+        'price',
+        'total',
+    ];
+
     public static function createLineItem($data){
 
         return DB::transaction(function () use ($data){
             try {
 
+                $product = Product::find($data['product_id']);
+
                 $lineItem = LineItem::create([
                     'product_id' => $data['product_id'],
                     'orders_id' => $data['orders_id'],
                     'quantity' => $data['quantity'],
-                    'price' => $data['price'],
+                    'price' => $product['price'],
+                    'total' => $data['quantity'] * $product['price'],
                 ]);
+                
+                Order::updateOrderTotal($data);
 
                 return $lineItem;
             }

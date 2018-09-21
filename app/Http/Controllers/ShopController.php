@@ -11,7 +11,7 @@ class ShopController extends Controller
     public function create(Request $request){
 
 
-        $shop = Product::createShop($request);
+        $shop = Shop::createShop($request);
 
         if($shop){
             return response()->json([
@@ -28,7 +28,7 @@ class ShopController extends Controller
     public function read(Request $request){
 
 
-        $shop = Product::readShop($request);
+        $shop = Shop::readShop($request);
 
         if($shop){
             return response()->json([
@@ -44,7 +44,7 @@ class ShopController extends Controller
 
     public function update(Rquest $request){
 
-        $shop = Product::editShop($request);
+        $shop = Shop::editShop($request);
 
         if($shop){
             return response()->json([
@@ -61,7 +61,7 @@ class ShopController extends Controller
     public function delete(Request $request){
 
 
-        $bool = Product::deleteShop($request);
+        $bool = Shop::deleteShop($request);
 
         if($bool){
             return response()->json([

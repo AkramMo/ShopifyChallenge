@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -13,6 +15,18 @@ class Product extends Model
      */
     protected $table = 'product';
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'shop_id',
+        'price',
+    ];
       
     public static function createProduct($data){
 

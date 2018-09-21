@@ -13,7 +13,7 @@ class LineItemController extends Controller
     public function create(Request $request){
 
 
-        $lineItem = Product::createLineItem($request);
+        $lineItem = LineItem::createLineItem($request);
 
         if($lineItem){
             return response()->json([

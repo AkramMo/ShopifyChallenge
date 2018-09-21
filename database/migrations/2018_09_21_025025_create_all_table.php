@@ -26,7 +26,8 @@ class CreateAllTable extends Migration
         // order is a reservate word in pgsql
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('total', 8, 2);
+            $table->decimal('total', 8, 2)
+                    ->nullable();
             $table->unsignedInteger('shop_id');
             $table->foreign('shop_id')
                 ->references('id')
@@ -36,6 +37,7 @@ class CreateAllTable extends Migration
         Schema::create('line_item', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('total', 8, 2);
+            $table->decimal('price', 8, 2);
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')
                 ->references('id')

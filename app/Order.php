@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Order extends Model
 {
@@ -12,6 +14,18 @@ class Order extends Model
      * @var string
      */
     protected $table = 'orders';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    protected $fillable = [
+        'total',
+        'shop_id',
+    ];
     
     public static function createOrder($data){
 
@@ -37,10 +51,10 @@ class Order extends Model
             try {
 
 
-                $order = Order::find($data['id']);
+                $order = Order::find($data['orders_id']);
 
-                $total = LineItem::where('order_id', $data['id'])
-                        ->sum('price');
+                $total = LineItem::where('orders_id', $data['orders_id'])
+                        ->sum('total');
 
                 $order->total = $total;            
             
@@ -91,7 +105,7 @@ class Order extends Model
         return DB::transaction(function () use ($data){
             try {
 
-                $order = Order::find($data['id']);
+                $order = Order::find($data['orders_id']);
 
                 $order->delete();
 

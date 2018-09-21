@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Shop extends Model
 {
@@ -13,14 +14,22 @@ class Shop extends Model
      * @var string
      */
     protected $table = 'shop';
+
+      /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     protected $fillable = [
-        'id',
         'name',
     ];
 
     
     public static function createShop($data){
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
         return DB::transaction(function () use ($data){
             try {
 
