@@ -26,8 +26,8 @@ class LineItem extends Model
 
 
     protected $fillable = [
-        'total',
-        'shop_id',
+        'quantity',
+        'product_id',
         'orders_id',
         'price',
         'total',
@@ -40,24 +40,26 @@ class LineItem extends Model
 
                 $product = Product::where('id',$data['product_id'])->first();
                 $total = $data['quantity'] * $product['price'];
-                var_dump($product['price']);
+
                 $lineItem = LineItem::create([
-                    'product_id' => $data['product_id'],
                     'orders_id' => $data['orders_id'],
+                    'product_id' => $data['product_id'],
                     'quantity' => $data['quantity'],
                     'price' => $product['price'],
                     'total' => $total,
                 ]);
              
+         
                 
                 $order = Order::where('id', $data['orders_id'])->first();
               
+            
                 $orderTotal = LineItem::where('orders_id', $data['orders_id'])
                         ->sum('total');
 
                 $order->total = $orderTotal;            
             
-                $order->save();
+                $order->save(); 
 
                 return $lineItem;
             }

@@ -27,7 +27,7 @@ class CreateAllTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('total', 8, 2)
-                    ->nullable();
+                ->nullable();
             $table->unsignedInteger('shop_id');
             $table->foreign('shop_id')
                 ->references('id')
@@ -38,16 +38,16 @@ class CreateAllTable extends Migration
             $table->increments('id');
             $table->decimal('total', 8, 2);
             $table->decimal('price', 8, 2);
+            $table->decimal('quantity', 8, 0)
+                ->nullable();
             $table->unsignedInteger('product_id');
+            $table->unsignedInteger('orders_id');
             $table->foreign('product_id')
                 ->references('id')
-                ->on('product')
-                ->onDelete('cascade');
-            $table->unsignedInteger('orders_id');
+                ->on('product');
             $table->foreign('orders_id')
                 ->references('id')
-                ->on('orders')
-                ->onDelete('cascade');
+                ->on('orders');
         });         
     }
 

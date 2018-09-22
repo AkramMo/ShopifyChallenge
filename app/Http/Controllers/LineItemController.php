@@ -12,7 +12,6 @@ class LineItemController extends Controller
  
     public function create(Request $request){
 
-
         $lineItem = LineItem::createLineItem($request);
 
         if($lineItem){
@@ -24,7 +23,7 @@ class LineItemController extends Controller
 
         return response()->json([
             'message' => 'error',
-        ], 500);
+        ], 500); 
     }
 
     public function read(Request $request){
