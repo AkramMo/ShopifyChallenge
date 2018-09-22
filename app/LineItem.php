@@ -38,17 +38,26 @@ class LineItem extends Model
         return DB::transaction(function () use ($data){
             try {
 
-                $product = Product::find($data['product_id']);
-
+                $product = Product::where('id',$data['product_id'])->first();
+                $total = $data['quantity'] * $product['price'];
+                var_dump($product['price']);
                 $lineItem = LineItem::create([
                     'product_id' => $data['product_id'],
                     'orders_id' => $data['orders_id'],
                     'quantity' => $data['quantity'],
                     'price' => $product['price'],
-                    'total' => $data['quantity'] * $product['price'],
+                    'total' => $total,
                 ]);
+             
                 
-                Order::updateOrderTotal($data);
+                $order = Order::where('id', $data['orders_id'])->first();
+              
+                $orderTotal = LineItem::where('orders_id', $data['orders_id'])
+                        ->sum('total');
+
+                $order->total = $orderTotal;            
+            
+                $order->save();
 
                 return $lineItem;
             }
@@ -63,7 +72,7 @@ class LineItem extends Model
         return DB::transaction(function () use ($data){
             try {
 
-                $lineItem = LineItem::find($data['id']);
+                $lineItem = LineItem::where('id',$data['id'])->first();
 
                 $lineItem->quantity = $data['quantity'];
                 $lineItem->price = $data['price'];
@@ -84,7 +93,7 @@ class LineItem extends Model
         return DB::transaction(function () use ($data){
             try {
 
-                $lineItem = LineItem::find($data['id']);
+                $lineItem = LineItem::where('id',$data['id'])->first();
 
 
                 return $lineItem;

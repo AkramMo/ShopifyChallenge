@@ -51,7 +51,7 @@ class Order extends Model
             try {
 
 
-                $order = Order::find($data['orders_id']);
+                $order = Order::where('id', $data['orders_id']);
 
                 $total = LineItem::where('orders_id', $data['orders_id'])
                         ->sum('total');
