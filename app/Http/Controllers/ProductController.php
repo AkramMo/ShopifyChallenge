@@ -35,7 +35,7 @@ class ProductController extends Controller
             return response()->json([
                 'message' => 'success',
                 'product' => $product
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -43,7 +43,7 @@ class ProductController extends Controller
         ], 500);
     }
 
-    public function update(Rquest $request){
+    public function update(Request $request){
 
 
         $product = Product::editProduct($request);
@@ -68,7 +68,7 @@ class ProductController extends Controller
         if($bool){
             return response()->json([
                 'message' => 'success'
-            ], 201);
+            ], 200);
         }
 
         return response()->json([

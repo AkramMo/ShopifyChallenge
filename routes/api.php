@@ -35,5 +35,5 @@ Route::delete('shop{id}', 'ShopController@delete');
 
 Route::post('order', 'OrderController@create');
 Route::get('order/{id}', 'OrderController@read');
-Route::post('order/update/{id}', 'OrderController@updateOrderTotal');
+Route::patch('order/update/{id}', 'OrderController@updateOrderTotal');
 Route::patch('order/{id}', 'OrderController@update');

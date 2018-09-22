@@ -51,17 +51,37 @@ class Order extends Model
             try {
 
 
-                $order = Order::where('id', $data['orders_id']);
+                $order = Order::where('id', $data['shop_id'])->first();
 
-                $total = LineItem::where('orders_id', $data['orders_id'])
-                        ->sum('total');
+                $total = LineItem::where('orders_id', $order->id)
+                            ->sum('total');
 
-                $order->total = $total;            
+                $order->total = $total;     
+                
+                $order->save();
+
+                return $order;
+            }
+            catch (\Illuminate\Database\QueryException $exception) {
+                return false;
+            }
+        });
+    }
+    
+    public static function editOrder($data){
+
+        return DB::transaction(function () use ($data){
+            try {
+
+
+                $order = Order::where('id', $data['shop_id'])->first();
+
+                $order->total = $data['total'];
+                
             
                 $order->save();
 
-
-                return $lineItem;
+                return $order;
             }
             catch (\Illuminate\Database\QueryException $exception) {
                 return false;

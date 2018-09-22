@@ -35,7 +35,7 @@ class LineItemController extends Controller
             return response()->json([
                 'message' => 'success',
                 'lineItem' => $lineItem
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -43,7 +43,7 @@ class LineItemController extends Controller
         ], 500);
     }
 
-    public function update(Rquest $request){
+    public function update(Request $request){
 
         $lineItem = Product::editLineItem($request);
 
@@ -51,7 +51,7 @@ class LineItemController extends Controller
             return response()->json([
                 'message' => 'success',
                 'lineItem' => $lineItem
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -67,7 +67,7 @@ class LineItemController extends Controller
         if($bool){
             return response()->json([
                 'message' => 'success'
-            ], 201);
+            ], 200);
         }
 
         return response()->json([

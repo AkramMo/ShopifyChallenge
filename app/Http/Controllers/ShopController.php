@@ -42,7 +42,7 @@ class ShopController extends Controller
         ], 500);
     }
 
-    public function update(Rquest $request){
+    public function update(Request $request){
 
         $shop = Shop::editShop($request);
 
@@ -50,7 +50,7 @@ class ShopController extends Controller
             return response()->json([
                 'message' => 'success',
                 'shop' => $shop
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -66,7 +66,7 @@ class ShopController extends Controller
         if($bool){
             return response()->json([
                 'message' => 'success'
-            ], 201);
+            ], 200);
         }
 
         return response()->json([

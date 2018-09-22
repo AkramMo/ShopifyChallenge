@@ -35,7 +35,7 @@ class OrderController extends Controller
             return response()->json([
                 'message' => 'success',
                 'order' => $order
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -43,7 +43,24 @@ class OrderController extends Controller
         ], 500);
     }
       
-    public function updateOrderTotal(Rquest $request){
+    public function update(Request $request){
+
+
+        $order = Order::editOrder($request);
+
+        if($order){
+            return response()->json([
+                'message' => 'success',
+                'order' => $order
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'error',
+        ], 500);
+    }
+
+    public function updateOrderTotal(Request $request){
 
 
         $order = Order::updateOrderTotal($request);
@@ -52,7 +69,7 @@ class OrderController extends Controller
             return response()->json([
                 'message' => 'success',
                 'order' => $order
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
@@ -67,7 +84,7 @@ class OrderController extends Controller
         if($bool){
             return response()->json([
                 'message' => 'success'
-            ], 201);
+            ], 200);
         }
 
         return response()->json([
