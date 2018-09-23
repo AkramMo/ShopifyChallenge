@@ -42,6 +42,25 @@ class OrderController extends Controller
             'message' => 'error',
         ], 500);
     }
+
+
+    public function readAllOrders(Request $request){
+
+
+        $order = Order::readShopOrder($request);
+
+        if($order){
+            return response()->json([
+                'message' => 'success',
+                'order' => $order
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'error',
+        ], 500);
+    }
+      
       
     public function update(Request $request){
 

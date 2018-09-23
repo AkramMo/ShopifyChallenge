@@ -8,6 +8,9 @@ use Illuminate\Database\QueryException;
 
 class ShopController extends Controller
 {
+    /**
+     * Create a shop
+     */
     public function create(Request $request){
 
 
@@ -25,6 +28,9 @@ class ShopController extends Controller
         ], 500);
     }
 
+    /**
+     * Return a shop according to his ID
+     */
     public function read(Request $request){
 
 
@@ -42,6 +48,30 @@ class ShopController extends Controller
         ], 500);
     }
 
+    /**
+     * Return all the orders according to his shop_id
+     */
+    public function readShopOrder(Request $request){
+
+
+        $orders = Shop::readShopOrder($request);
+
+        if($orders){
+            return response()->json([
+                'message' => 'success',
+                'orders' => $orders
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'error',
+        ], 500);
+    }
+   
+
+    /**
+     * Modify a shop 
+     */
     public function update(Request $request){
 
         $shop = Shop::editShop($request);
@@ -58,6 +88,9 @@ class ShopController extends Controller
         ], 500);
     }
 
+    /**
+     * Delete a shop according to his ID
+     */
     public function delete(Request $request){
 
 

@@ -9,7 +9,9 @@ use Illuminate\Database\QueryException;
 class LineItemController extends Controller
 {
        
- 
+    /**
+     * Create line_item and store it
+     */
     public function create(Request $request){
 
         $lineItem = LineItem::createLineItem($request);
@@ -26,6 +28,10 @@ class LineItemController extends Controller
         ], 500); 
     }
 
+    /**
+     * Return the line_item according to the ID
+     * @return LineItem
+     */
     public function read(Request $request){
 
 
@@ -42,7 +48,10 @@ class LineItemController extends Controller
             'message' => 'error',
         ], 500);
     }
-
+    
+    /**
+     * Update the line item according to the ID
+     */
     public function update(Request $request){
 
         $lineItem = LineItem::editLineItem($request);
@@ -59,6 +68,9 @@ class LineItemController extends Controller
         ], 500);
     }
 
+    /**
+     * Delete the line item directly into the DB
+     */
     public function delete(Request $request){
 
 

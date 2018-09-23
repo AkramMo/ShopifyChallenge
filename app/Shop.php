@@ -25,8 +25,10 @@ class Shop extends Model
     protected $fillable = [
         'name',
     ];
-
-    
+      
+    /**
+     * Create line_item and store it
+     */
     public static function createShop($data){
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
@@ -45,6 +47,9 @@ class Shop extends Model
         });
     }
 
+    /**
+     * Edit an existing shop
+     */
     public static function editShop($data){
 
         return DB::transaction(function () use ($data){
@@ -65,6 +70,9 @@ class Shop extends Model
         });
     }
 
+    /**
+     * Return a shop according to his ID
+     */
     public static function readShop($data){
 
         return DB::transaction(function () use ($data){
@@ -81,6 +89,27 @@ class Shop extends Model
         });
     }
 
+    /**
+     * Return all the orders from a specific shop ID
+     */
+    public static function readShopOrder($data){
+
+        return DB::transaction(function () use ($data){
+            try{
+
+                return Order::where('shop_id', $data['id'])->get();
+
+                
+            }
+            catch (\Illuminate\Database\QueryException $exception) {
+                return false;
+            }
+        });
+    }
+
+    /**
+     * Delete a shop function
+     */
     public static function deleteShop($data){
 
         return DB::transaction(function () use ($data){

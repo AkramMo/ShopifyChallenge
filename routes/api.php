@@ -30,6 +30,7 @@ Route::delete('lineItem/{id}', 'LineItemController@delete');
 
 Route::post('shop', 'ShopController@create');
 Route::get('shop/{id}', 'ShopController@read');
+Route::get('shop/order/{id}', 'ShopController@readShopOrder');
 Route::patch('shop/{id}', 'ShopController@update');
 Route::delete('shop{id}', 'ShopController@delete');
 

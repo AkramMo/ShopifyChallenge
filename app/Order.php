@@ -27,6 +27,9 @@ class Order extends Model
         'shop_id',
     ];
     
+    /**
+     * Create an new Order
+     */
     public static function createOrder($data){
 
         return DB::transaction(function () use ($data){
@@ -45,6 +48,10 @@ class Order extends Model
         });
     }
 
+    /**
+     * Update the total of an Order according
+     * to the his line items
+     */
     public static function updateOrderTotal($data){
 
         return DB::transaction(function () use ($data){
@@ -68,6 +75,9 @@ class Order extends Model
         });
     }
     
+    /**
+     * Update an existing order
+     */
     public static function editOrder($data){
 
         return DB::transaction(function () use ($data){
@@ -89,6 +99,9 @@ class Order extends Model
         });
     }
 
+    /**
+     * Return an order according to his ID
+     */
     public static function readOrder($data){
 
         return DB::transaction(function () use ($data){
@@ -105,21 +118,7 @@ class Order extends Model
         });
     }
 
-    public static function readShopOrder($data){
-
-        return DB::transaction(function () use ($data){
-            try{
-
-                $allOrder = Order::where('shop_id', $data['shop_id'])->get();
-
-                return $allOrder;
-            }
-            catch (\Illuminate\Database\QueryException $exception) {
-                return false;
-            }
-        });
-    }
-
+  
     public static function deleteOrder($data){
 
         return DB::transaction(function () use ($data){
