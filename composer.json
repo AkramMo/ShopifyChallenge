@@ -52,7 +52,7 @@
         "post-install-cmd": [
             "php artisan optimize",
             "php artisan migrate --force",
-        ],
+        ]
     },
     "config": {
         "preferred-install": "dist",
