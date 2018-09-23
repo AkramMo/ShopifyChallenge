@@ -50,7 +50,6 @@
             "php artisan package:discover"
         ],
         "post-install-cmd": [
-            "php artisan optimize",
             "php artisan migrate --force"
         ]
     },
