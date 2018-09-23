@@ -24,9 +24,9 @@ Route::patch('product/{id}', 'ProductController@update');
 Route::delete('product/{id}', 'ProductController@delete');
 
 Route::post('lineItem', 'LineItemController@create');
-Route::get('lineItem/{id}', 'ProductController@read');
-Route::patch('lineItem/{id}', 'ProductController@update');
-Route::delete('lineItem/{id}', 'ProductController@delete');
+Route::get('lineItem/{id}', 'LineItemController@read');
+Route::patch('lineItem/{id}', 'LineItemController@update');
+Route::delete('lineItem/{id}', 'LineItemController@delete');
 
 Route::post('shop', 'ShopController@create');
 Route::get('shop/{id}', 'ShopController@read');
@@ -37,3 +37,4 @@ Route::post('order', 'OrderController@create');
 Route::get('order/{id}', 'OrderController@read');
 Route::patch('order/update/{id}', 'OrderController@updateOrderTotal');
 Route::patch('order/{id}', 'OrderController@update');
+Route::delete('order/{id}', 'OrderController@delete');

@@ -78,6 +78,7 @@ class LineItem extends Model
 
                 $lineItem->quantity = $data['quantity'];
                 $lineItem->price = $data['price'];
+                $lineItem->total = $data['total'];
             
                 $lineItem->save();
 

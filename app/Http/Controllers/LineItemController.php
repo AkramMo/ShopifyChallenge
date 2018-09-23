@@ -29,7 +29,7 @@ class LineItemController extends Controller
     public function read(Request $request){
 
 
-        $lineItem = Product::readLineItem($request);
+        $lineItem = LineItem::readLineItem($request);
 
         if($lineItem){
             return response()->json([
@@ -45,7 +45,7 @@ class LineItemController extends Controller
 
     public function update(Request $request){
 
-        $lineItem = Product::editLineItem($request);
+        $lineItem = LineItem::editLineItem($request);
 
         if($lineItem){
             return response()->json([
@@ -62,7 +62,7 @@ class LineItemController extends Controller
     public function delete(Request $request){
 
 
-        $bool = Product::deleteLineItem($request);
+        $bool = LineItem::deleteLineItem($request);
 
         if($bool){
             return response()->json([

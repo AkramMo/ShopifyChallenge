@@ -125,11 +125,9 @@ class Order extends Model
         return DB::transaction(function () use ($data){
             try {
 
-                $order = Order::find($data['orders_id']);
+                $order = Order::where('id', $data['id'])->first();
 
-                $order->delete();
-
-                return true;
+                return $order->delete();
             }
             catch (\Illuminate\Database\QueryException $exception) {
                 return false;

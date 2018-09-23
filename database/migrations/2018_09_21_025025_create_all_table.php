@@ -44,10 +44,12 @@ class CreateAllTable extends Migration
             $table->unsignedInteger('orders_id');
             $table->foreign('product_id')
                 ->references('id')
-                ->on('product');
+                ->on('product')
+                ->onDelete('cascade');
             $table->foreign('orders_id')
                 ->references('id')
-                ->on('orders');
+                ->on('orders')
+                ->onDelete('cascade');
         });         
     }
 
